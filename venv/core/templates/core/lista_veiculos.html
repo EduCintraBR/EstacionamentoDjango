@@ -1,0 +1,37 @@
+<h1>Veiculos</h1>
+<table border=1>
+    <tr>
+        <th>
+            <strong>Nome</strong>
+        </th>
+        <th>
+            <strong>Placa</strong>
+        </th>
+        <th>
+            <strong>Proprietario</strong>
+        </th>
+    </tr>
+        {% for veic in veiculos %}
+            <tr>
+                <td>
+                    {{veic.nome}}
+                </td>
+                <td>
+                    {{veic.placa}}
+                </td>
+                <td>
+                    {{veic.proprietario}}
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+
+<form action="{% url 'core_novoVeiculo' %}" method="POST">
+    {% comment %} 
+        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
+    {% endcomment %}
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>

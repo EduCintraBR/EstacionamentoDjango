@@ -1,0 +1,37 @@
+<h1>Movimento Mensalista</h1>
+<table border=1>
+    <tr>
+        <th>
+            <strong>Mensalista</strong>
+        </th>
+        <th>
+            <strong>Data de Pagamento</strong>
+        </th>
+        <th>
+            <strong>Total a pagar</strong>
+        </th>
+    </tr>
+        {% for movM in movMensalista %}
+            <tr>
+                <td>
+                    {{movM.mensalista}}
+                </td>
+                <td>
+                    {{movM.dt_pgto}}
+                </td>
+                <td>
+                    {{movM.total_pgto}}
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+
+<form action="{% url 'core_novoMovMensalista' %}" method="POST">
+    {% comment %} 
+        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
+    {% endcomment %}
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>
