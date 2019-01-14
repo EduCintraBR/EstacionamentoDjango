@@ -27,6 +27,6 @@ urlpatterns = [
     url(r'^novo_mensalista/$', novo_mensalista , name='core_novoMensalista'),
     
     url(r'^movMensalista/$', movMensalista , name='core_listaMovMensalista'),
-    url(r'^update_movMensalista/(?P<id>\d+)/$', update_movMensalista, name='core_movMensalista'),
+    url(r'^update_movMensalista/(?P<id>\d+)/$', update_movMensalista, name='core_updateMovMensalista'),
     url(r'^novo_movMensalista/$', novo_movMensalista , name='core_novoMovMensalista')
 ]

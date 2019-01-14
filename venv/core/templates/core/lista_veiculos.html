@@ -22,6 +22,9 @@
                 <td>
                     {{veic.proprietario}}
                 </td>
+                <td>
+                    <a href="{% url 'core_updateVeiculo' veic.id %}">Editar</a>
+                </td>
             </tr>
         {% endfor %}
 </table>

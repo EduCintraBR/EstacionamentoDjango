@@ -58,9 +58,9 @@ def update_veiculo(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            redirect('core_listaVeiculos')
+            return redirect('core_listaVeiculos')
     else:
-        render(request, 'core/lista_veiculos.html', dados)
+        return render(request, 'core/update_veiculo.html', dados)
 
 #CRUD Movimento Rotativo
 def movRotativo(request):
@@ -85,9 +85,9 @@ def update_movRotativo(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            redirect('core_listaMovRotativo')
+            return redirect('core_listaMovRotativo')
     else:
-        render(request, 'core/lista_movRotativo.html', dados)
+        return render(request, 'core/update_movRotativo.html', dados)
 
 #CRUD Mensalistas
 def mensalista(request):
@@ -112,9 +112,9 @@ def update_mensalista(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            redirect('core_listaMensalista')
+            return redirect('core_listaMensalista')
     else:
-        return render(request, 'core/lista_mensalista.html', dados)
+        return render(request, 'core/update_mensalista.html', dados)
 
 #CRUD Movimento Mensalistas
 def movMensalista(request):
@@ -139,6 +139,6 @@ def update_movMensalista(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            redirect('core_listaMovMensalista')
+            return redirect('core_listaMovMensalista')
     else:
-        render(request, 'core/lista_movMensalista.html', dados)
+        return render(request, 'core/update_movMensalista.html', dados)

@@ -22,6 +22,9 @@
                 <td>
                     {{movM.total_pgto}}
                 </td>
+                <td>
+                    <a href="{% url 'core_updateMovMensalista' movM.id %}">Editar</a>
+                </td>
             </tr>
         {% endfor %}
 </table>
