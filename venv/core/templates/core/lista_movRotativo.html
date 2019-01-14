@@ -1,0 +1,49 @@
+<h1>Movimento Rotativo</h1>
+<table border=1>
+    <tr>
+        <th>
+            <strong>CheckIn</strong>
+        </th>
+        <th>
+            <strong>CheckOut</strong>
+        </th>
+        <th>
+            <strong>Veiculo</strong>
+        </th>
+        <th>
+            <strong>Total</strong>
+        </th>
+        <th>
+            <strong>Pago?</strong>
+        </th>
+    </tr>
+        {% for movR in movRotativo %}
+            <tr>
+                <td>
+                    {{movR.checkIn}}
+                </td>
+                <td>
+                    {{movR.checkOut}}
+                </td>
+                <td>
+                    {{movR.veiculo}}
+                </td>
+                <td>
+                    {{movR.total}}
+                </td>
+                <td>
+                    {{movR.pago}}
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+
+<form action="{% url 'core_novoMovRotativo' %}" method="POST">
+    {% comment %} 
+        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
+    {% endcomment %}
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>

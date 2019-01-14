@@ -1,0 +1,40 @@
+<h1>Pessoas</h1>
+<table border=1>
+    <tr>
+        <th>
+            <strong>Nome</strong>
+        </th>
+        <th>
+            <strong>Endereco</strong>
+        </th>
+        <th>
+            <strong>Telefone</strong>
+        </th>
+    </tr>
+        {% for pessoa in pessoas %}
+            <tr>
+                <td>
+                    {{pessoa.nome}}
+                </td>
+                <td>
+                    {{pessoa.endereco}}
+                </td>
+                <td>
+                    {{pessoa.telefone}}
+                </td>
+                <td>
+                    <a href="{% url 'core_updatePessoa' pessoa.id %}">Editar</a>
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+
+<form action="{% url 'core_novaPessoa' %}" method="POST">
+    {% comment %} 
+        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
+    {% endcomment %}
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>

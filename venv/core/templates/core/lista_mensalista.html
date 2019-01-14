@@ -1,0 +1,37 @@
+<h1>Mensalistas</h1>
+<table border=1>
+    <tr>
+        <th>
+            <strong>Veiculo</strong>
+        </th>
+        <th>
+            <strong>Data de Inicio</strong>
+        </th>
+        <th>
+            <strong>Valor por mês</strong>
+        </th>
+    </tr>
+        {% for mens in mensalista %}
+            <tr>
+                <td>
+                    {{mens.veiculo}}
+                </td>
+                <td>
+                    {{mens.inicio}}
+                </td>
+                <td>
+                    {{mens.valor_mes}}
+                </td>
+            </tr>
+        {% endfor %}
+</table>
+
+<form action="{% url 'core_novoMensalista' %}" method="POST">
+    {% comment %} 
+        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
+    {% endcomment %}
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <button type="submit">Cadastrar</button>
+</form>
