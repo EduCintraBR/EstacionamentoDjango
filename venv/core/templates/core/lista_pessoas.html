@@ -23,7 +23,10 @@
                     {{pessoa.telefone}}
                 </td>
                 <td>
-                    <a href="{% url 'core_updatePessoa' pessoa.id %}">Editar</a>
+                    <button><a href="{% url 'core_updatePessoa' pessoa.id %}">Editar</a></button>
+                </td>
+                <td>
+                    <button><a href="{% url 'core_deletePessoa' pessoa.id %}">Excluir</a></button>
                 </td>
             </tr>
         {% endfor %}
@@ -38,3 +41,4 @@
 
     <button type="submit">Cadastrar</button>
 </form>
+

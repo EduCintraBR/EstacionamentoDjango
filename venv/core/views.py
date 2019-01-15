@@ -34,6 +34,17 @@ def update_pessoa(request, id):
             return redirect('core_listaPessoas')
     else:
         return render(request, 'core/update_pessoa.html', dados)
+
+def delete_pessoa(request, id):
+    dados = {}
+    pessoa = Pessoa.objects.get(id=id)
+    dados['pessoa'] = pessoa
+
+    if request.method == 'POST':
+        pessoa.delete()
+        return redirect('core_listaPessoas')
+    else:
+        return render(request, 'core/delete_pessoa.html', dados)
     
 #CRUD Veiculos
 def veiculos(request):
@@ -61,6 +72,17 @@ def update_veiculo(request, id):
             return redirect('core_listaVeiculos')
     else:
         return render(request, 'core/update_veiculo.html', dados)
+
+def delete_veiculo(request, id):
+    dados = {}
+    veiculo = Veiculo.objects.get(id=id)
+    dados['veiculo'] = veiculo
+
+    if request.method == 'POST':
+        veiculo.delete()
+        return redirect('core_listaVeiculos')
+    else:
+        return render(request, 'core/delete_veiculo.html', dados)
 
 #CRUD Movimento Rotativo
 def movRotativo(request):
