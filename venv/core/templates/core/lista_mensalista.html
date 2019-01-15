@@ -1,17 +1,27 @@
-<h1>Mensalistas</h1>
-<table border=1>
-    <tr>
-        <th>
-            <strong>Veiculo</strong>
-        </th>
-        <th>
-            <strong>Data de Inicio</strong>
-        </th>
-        <th>
-            <strong>Valor por mês</strong>
-        </th>
-    </tr>
-        {% for mens in mensalista %}
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+<div class="row">
+    <div class="col-sm-12" id="containerTitulo">
+        <h1>Mensalistas</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    <strong>Veiculo</strong>
+                </th>
+                <th>
+                    <strong>Data de Inicio</strong>
+                </th>
+                <th>
+                    <strong>Valor por mês</strong>
+                </th>
+            </tr>
+            {% for mens in mensalista %}
             <tr>
                 <td>
                     {{mens.veiculo}}
@@ -20,24 +30,30 @@
                     {{mens.inicio}}
                 </td>
                 <td>
-                    {{mens.valor_mes}}
+                    R${{mens.valor_mes}}
                 </td>
                 <td>
-                    <button><a href="{% url 'core_updateMensalista' mens.id %}">Editar</a></button>
+                    <button class="btn btn-outline-warning">
+                        <a href="{% url 'core_updateMensalista' mens.id %}">Editar</a>
+                    </button>
                 </td>
                 <td>
-                    <button><a href="{% url 'core_deleteMensalista' mens.id %}">Excluir</a></button>
+                    <button class="btn btn-outline-danger">
+                        <a href="{% url 'core_deleteMensalista' mens.id %}">Excluir</a>
+                    </button>
                 </td>
             </tr>
-        {% endfor %}
-</table>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-sm-4">
+        <h3>Formulario de cadastro</h3>
+        <form action="{% url 'core_novoMensalista' %}" method="POST">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <button class="btn btn-success btn-block" type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
 
-<form action="{% url 'core_novoMensalista' %}" method="POST">
-    {% comment %} 
-        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
-    {% endcomment %}
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Cadastrar</button>
-</form>
+{% endblock %}

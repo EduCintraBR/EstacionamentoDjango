@@ -1,23 +1,32 @@
-<h1>Movimento Rotativo</h1>
-<table border=1>
-    <tr>
-        <th>
-            <strong>CheckIn</strong>
-        </th>
-        <th>
-            <strong>CheckOut</strong>
-        </th>
-        <th>
-            <strong>Veiculo</strong>
-        </th>
-        <th>
-            <strong>Total</strong>
-        </th>
-        <th>
-            <strong>Pago?</strong>
-        </th>
-    </tr>
-        {% for movR in movRotativo %}
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+<div class="row">
+    <div class="col-sm-12" id="containerTitulo">
+        <h1>Movimento Rotativo</h1>
+    </div>
+</div>
+    <div class="col-sm-12">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    <strong>CheckIn</strong>
+                </th>
+                <th>
+                    <strong>CheckOut</strong>
+                </th>
+                <th>
+                    <strong>Veiculo</strong>
+                </th>
+                <th>
+                    <strong>Total</strong>
+                </th>
+                <th>
+                    <strong>Pago?</strong>
+                </th>
+            </tr>
+            {% for movR in movRotativo %}
             <tr>
                 <td>
                     {{movR.checkIn}}
@@ -29,24 +38,53 @@
                     {{movR.veiculo}}
                 </td>
                 <td>
-                    {{movR.total}}
+                    R${{movR.total}}
                 </td>
                 <td>
                     {{movR.pago}}
                 </td>
                 <td>
-                    <a href="{% url 'core_updateMovRotativo' movR.id %}">Editar</a>
+                    <button class="btn btn-outline-warning">
+                        <a href="{% url 'core_updateMovRotativo' movR.id %}">Editar</a>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger">
+                        <a href="{% url 'core_deleteMovRotativo' movR.id %}">Excluir</a>
+                    </button>
                 </td>
             </tr>
         {% endfor %}
-</table>
-
-<form action="{% url 'core_novoMovRotativo' %}" method="POST">
-    {% comment %} 
-        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
-    {% endcomment %}
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Cadastrar</button>
-</form>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Formulario de cadastro</h3>
+            <form action="{% url 'core_novoMovRotativo' %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-4">
+                        {{ form.checkIn|bootstrap }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.checkOut|bootstrap }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ form.valor_hora|bootstrap }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        {{ form.veiculo|bootstrap }}
+                    </div>
+                    <div class="col-sm-2 col align-self-end">
+                        {{ form.pago|bootstrap }}
+                    </div>
+                    <div class="col-sm-4 align-self-center">
+                        <button class="btn btn-success btn-block" type="submit">Cadastrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

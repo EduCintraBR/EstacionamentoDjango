@@ -3,16 +3,16 @@
 {% block main %}
 <div class="row">
     <div class="offset-sm-3 col-sm-6">
-        <h2>Deletando Veiculo: {{ veiculo }}<h2>
+        <h2>Deletando Mensalista: {{ mensalista }}<h2>
 
         <h3> Você tem certeza que deseja excluir este registro? </h3>
 
-        <form action="{% url 'core_deleteVeiculo' veiculo.id %}" method="POST">
+        <form action="{% url 'core_deleteMensalista' mensalista.id %}" method="POST">
             {% csrf_token %}
 
             <button class="btn btn-success" type='submit'>Sim</button>
             <button class="btn btn-danger">
-                <a href="{% url 'core_listaVeiculos' %}">Não</a>
+                <a href="{% url 'core_listaMensalista' %}">Não</a>
             </button>
         </form>
     </div>

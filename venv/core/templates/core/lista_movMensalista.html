@@ -1,17 +1,27 @@
-<h1>Movimento Mensalista</h1>
-<table border=1>
-    <tr>
-        <th>
-            <strong>Mensalista</strong>
-        </th>
-        <th>
-            <strong>Data de Pagamento</strong>
-        </th>
-        <th>
-            <strong>Total a pagar</strong>
-        </th>
-    </tr>
-        {% for movM in movMensalista %}
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block main %}
+<div class="row">
+    <div class="col-sm-12" id="containerTitulo">
+        <h1>Movimento Mensalista</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-7">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    <strong>Mensalista</strong>
+                </th>
+                <th>
+                    <strong>Data de Pagamento</strong>
+                </th>
+                <th>
+                    <strong>Total a pagar</strong>
+                </th>
+            </tr>
+            {% for movM in movMensalista %}
             <tr>
                 <td>
                     {{movM.mensalista}}
@@ -20,21 +30,30 @@
                     {{movM.dt_pgto}}
                 </td>
                 <td>
-                    {{movM.total_pgto}}
+                    R${{movM.total_pgto}}
                 </td>
                 <td>
-                    <a href="{% url 'core_updateMovMensalista' movM.id %}">Editar</a>
+                    <button class="btn btn-outline-warning">
+                        <a href="{% url 'core_updateMovMensalista' movM.id %}">Editar</a>
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-outline-danger">
+                        <a href="{% url 'core_deleteMovMensalista' movM.id %}">Excluir</a>
+                    </button>
                 </td>
             </tr>
         {% endfor %}
-</table>
+        </table>
+    </div>
+    <div class="col-sm-4">
+    <h3>Formulario de cadastro</h3>
+        <form action="{% url 'core_novoMovMensalista' %}" method="POST">
+            {% csrf_token %}
+            {{ form|bootstrap }}
+            <button class="btn btn-success btn-block" type="submit">Cadastrar</button>
+        </form>
+    </div>
+</div>
 
-<form action="{% url 'core_novoMovMensalista' %}" method="POST">
-    {% comment %} 
-        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
-    {% endcomment %}
-    {% csrf_token %}
-    {{ form.as_p }}
-
-    <button type="submit">Cadastrar</button>
-</form>
+{% endblock %}

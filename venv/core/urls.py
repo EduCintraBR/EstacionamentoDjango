@@ -5,7 +5,8 @@ from .views import (
     nova_pessoa, novo_veiculo, novo_movRotativo,
     novo_mensalista, novo_movMensalista, update_pessoa,
     update_veiculo, update_mensalista, update_movRotativo,
-    update_movMensalista, delete_pessoa, delete_veiculo)
+    update_movMensalista, delete_pessoa, delete_veiculo,
+    delete_movRotativo, delete_mensalista, delete_movMensalista)
 
 urlpatterns = [
     url(r'^$', home, name='core_home'),
@@ -21,14 +22,17 @@ urlpatterns = [
     
     url(r'^movRotativo/$', movRotativo , name='core_listaMovRotativo'),
     url(r'^update_movRotativo/(?P<id>\d+)/$', update_movRotativo, name='core_updateMovRotativo'),
+    url(r'^delete_movRotativo/(?P<id>\d+)/$', delete_movRotativo, name='core_deleteMovRotativo'),
     url(r'^novo_movRotativo/$', novo_movRotativo , name='core_novoMovRotativo'),
 
     
     url(r'^mensalista/$', mensalista , name='core_listaMensalista'),
     url(r'^update_mensalista/(?P<id>\d+)/$', update_mensalista, name='core_updateMensalista'),
+    url(r'^delete_mensalista/(?P<id>\d+)/$', delete_mensalista, name='core_deleteMensalista'),
     url(r'^novo_mensalista/$', novo_mensalista , name='core_novoMensalista'),
     
     url(r'^movMensalista/$', movMensalista , name='core_listaMovMensalista'),
     url(r'^update_movMensalista/(?P<id>\d+)/$', update_movMensalista, name='core_updateMovMensalista'),
+    url(r'^delete_movMensalista/(?P<id>\d+)/$', delete_movMensalista, name='core_deleteMovMensalista'),
     url(r'^novo_movMensalista/$', novo_movMensalista , name='core_novoMovMensalista')
 ]
