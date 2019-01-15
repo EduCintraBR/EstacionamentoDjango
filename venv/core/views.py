@@ -6,7 +6,7 @@ from .forms import (
 
 def home(request):
     context = {'mensagem' : 'Ola Mundo'}
-    return render(request, 'core/index.html', context)
+    return render(request, 'base.html', context)
 
 #CRUD Pessoa
 def pessoas(request):

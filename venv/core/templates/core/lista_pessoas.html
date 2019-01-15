@@ -1,40 +1,49 @@
-<h1>Pessoas</h1>
-<table border=1>
-    <tr>
-        <th>
-            <strong>Nome</strong>
-        </th>
-        <th>
-            <strong>Endereco</strong>
-        </th>
-        <th>
-            <strong>Telefone</strong>
-        </th>
-    </tr>
-        {% for pessoa in pessoas %}
-            <tr>
-                <td>
-                    {{pessoa.nome}}
-                </td>
-                <td>
-                    {{pessoa.endereco}}
-                </td>
-                <td>
-                    {{pessoa.telefone}}
-                </td>
-                <td>
-                    <a href="{% url 'core_updatePessoa' pessoa.id %}">Editar</a>
-                </td>
-            </tr>
-        {% endfor %}
-</table>
+{% extends 'base.html' %}
 
-<form action="{% url 'core_novaPessoa' %}" method="POST">
-    {% comment %} 
-        Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
-    {% endcomment %}
-    {% csrf_token %}
-    {{ form.as_p }}
+{% block main %}
+    <div class="container-fluid">
+        <h1>Pessoas</h1>
+    </div>
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th scope="col">
+                <strong>Nome</strong>
+            </th>
+            <th scope="col">
+                <strong>Endereco</strong>
+            </th>
+            <th scope="col">
+                <strong>Telefone</strong>
+            </th>
+        </tr>
+            {% for pessoa in pessoas %}
+                <tr>
+                    <td>
+                        {{pessoa.nome}}
+                    </td>
+                    <td>
+                        {{pessoa.endereco}}
+                    </td>
+                    <td>
+                        {{pessoa.telefone}}
+                    </td>
+                    <td>
+                        <a href="{% url 'core_updatePessoa' pessoa.id %}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+    </table>
 
-    <button type="submit">Cadastrar</button>
-</form>
+    <div>
+        <h3>Formulario de cadastro</h3>
+        <form action="{% url 'core_novaPessoa' %}" method="POST">
+            {% comment %} 
+                Variavel responsavel por proteger o formularios de ataques do tipo csrf_token 
+            {% endcomment %}
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <button class="btn btn-success" type="submit">Cadastrar</button>
+        </form>
+    </div>
+{% endblock %}
