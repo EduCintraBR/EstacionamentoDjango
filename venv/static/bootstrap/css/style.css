@@ -1,0 +1,19 @@
+a:link{
+    text-decoration: none;
+    color: black;
+}
+a:active{
+    color: black;
+}
+a:visited{
+    color: black;
+}
+a:hover{
+    color: white;
+}
+#titulo{
+    padding: 25px;
+}
+#forms{
+    padding: 25px;
+}

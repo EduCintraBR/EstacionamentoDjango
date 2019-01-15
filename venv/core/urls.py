@@ -5,16 +5,18 @@ from .views import (
     nova_pessoa, novo_veiculo, novo_movRotativo,
     novo_mensalista, novo_movMensalista, update_pessoa,
     update_veiculo, update_mensalista, update_movRotativo,
-    update_movMensalista)
+    update_movMensalista, delete_pessoa, delete_veiculo)
 
 urlpatterns = [
     url(r'^$', home, name='core_home'),
     url(r'^pessoas/$', pessoas, name='core_listaPessoas'),
     url(r'^nova_pessoa/$', nova_pessoa, name='core_novaPessoa'),
     url(r'^update_pessoa/(?P<id>\d+)/$', update_pessoa, name='core_updatePessoa'),
+    url(r'^delete_pessoa/(?P<id>\d+)/$', delete_pessoa, name='core_deletePessoa'),
 
     url(r'^veiculos/$', veiculos, name='core_listaVeiculos'),
     url(r'^update_veiculo/(?P<id>\d+)/$', update_veiculo, name='core_updateVeiculo'),
+    url(r'^delete_veiculo/(?P<id>\d+)/$', delete_veiculo, name='core_deleteVeiculo'),
     url(r'^novo_veiculo/$', novo_veiculo, name='core_novoVeiculo'),
     
     url(r'^movRotativo/$', movRotativo , name='core_listaMovRotativo'),

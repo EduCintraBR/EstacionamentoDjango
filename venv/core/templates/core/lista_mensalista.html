@@ -23,7 +23,10 @@
                     {{mens.valor_mes}}
                 </td>
                 <td>
-                    <a href="{% url 'core_updateMensalista' mens.id %}">Editar</a>
+                    <button><a href="{% url 'core_updateMensalista' mens.id %}">Editar</a></button>
+                </td>
+                <td>
+                    <button><a href="{% url 'core_deleteMensalista' mens.id %}">Excluir</a></button>
                 </td>
             </tr>
         {% endfor %}

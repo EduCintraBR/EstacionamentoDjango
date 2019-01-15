@@ -23,7 +23,10 @@
                     {{veic.proprietario}}
                 </td>
                 <td>
-                    <a href="{% url 'core_updateVeiculo' veic.id %}">Editar</a>
+                    <button><a href="{% url 'core_updateVeiculo' veic.id %}">Editar</a></button>
+                </td>
+                <td>
+                    <button><a href="{% url 'core_deleteVeiculo' veic.id %}">Excluir</a></button>
                 </td>
             </tr>
         {% endfor %}
